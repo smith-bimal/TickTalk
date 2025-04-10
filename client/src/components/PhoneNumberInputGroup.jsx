@@ -2,16 +2,31 @@ import React, { useEffect, useRef, useState } from 'react'
 import { data } from "../helper/countryCodes";
 import PrimaryButton from './PrimaryButton';
 
-const PhoneNumberInputGroup = () => {
+const PhoneNumberInputGroup = ({ phoneNumber, setPhoneNumber, setNumberWithStar, handleSMSSend }) => {
     const [codes, setCodes] = useState([]);
     const [selectedCode, setSelectedCode] = useState(null);
-    const [phoneNumber, setPhoneNumber] = useState("");
     const [isOpen, setIsOpen] = useState(false);
+    const [isValid, setIsValid] = useState(false);
     const dropdownRef = useRef(null);
+
+    const formatPhoneNumber = (value) => {
+        const cleaned = value.replace(/\D/g, '');
+        setPhoneNumber(cleaned);
+        validatePhoneNumber(cleaned);
+    };
+
+    const validatePhoneNumber = (number) => {
+        setIsValid(number.length >= 10 && number.length <= 15);
+    };
+
+    useEffect(() => {
+        const str = selectedCode?.phoneCode + phoneNumber;
+        setNumberWithStar(str?.slice(0, 4) + str?.slice(4, -3)?.replace(/./g, "*") + str?.slice(-3));
+    }, [phoneNumber, selectedCode, setNumberWithStar]);
 
     useEffect(() => {
         setCodes(data);
-        setSelectedCode(data[0]);
+        setSelectedCode(data[10]);
 
         // Add click outside listener
         const handleClickOutside = (event) => {
@@ -39,7 +54,7 @@ const PhoneNumberInputGroup = () => {
                         />
                     )}
                     <span>{selectedCode?.phoneCode}</span>
-                    <i class="ri-arrow-down-s-line ml-2"></i>
+                    <i className="ri-arrow-down-s-line ml-2"></i>
                 </div>
 
                 {isOpen && (
@@ -65,14 +80,20 @@ const PhoneNumberInputGroup = () => {
                 <input
                     type="tel"
                     value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full p-2 border-b-[2px] border-[#E5E7EB] bg-transparent focus:outline-none focus:border-[#3B82F6] transition-all"
+                    onChange={(e) => formatPhoneNumber(e.target.value)}
+                    className={`w-full p-2 border-b-[2px] bg-transparent focus:outline-none transition-all ${isValid ? 'border-[#3B82F6]' : 'border-[#E5E7EB]'
+                        }`}
                     maxLength={15}
                     placeholder="Enter phone number"
                 />
             </div>
-
-            <PrimaryButton>Send OTP</PrimaryButton>
+            <PrimaryButton
+                onClick={handleSMSSend}
+                disabled={!isValid}
+                className={!isValid ? 'opacity-50 cursor-not-allowed' : ''}
+            >
+                Send OTP
+            </PrimaryButton>
         </div>
     )
 }
