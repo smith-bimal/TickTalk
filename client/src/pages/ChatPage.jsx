@@ -262,7 +262,7 @@ const ChatPage = () => {
                         {/* Go to bottom button */}
                         {showGoBottom && (
                             <button
-                                className="fixed bottom-24 right-20 z-20 bg-white border border-gray-300 shadow-lg rounded-full p-2 hover:bg-gray-100 transition"
+                                className="fixed bottom-24 right-20 z-20 bg-white shadow-lg border-2 border-gray-100 rounded-full p-2 hover:bg-gray-50 transition"
                                 onClick={scrollToBottom}
                                 aria-label="Go to bottom"
                             >
