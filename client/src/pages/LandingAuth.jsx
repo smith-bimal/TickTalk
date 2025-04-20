@@ -2,15 +2,19 @@ import { useEffect, useState } from "react";
 import BlackButton from "../components/BlackButton";
 import PhoneNumberInputGroup from "../components/PhoneNumberInputGroup";
 import OTPBox from "../components/OTPBox";
+import { useNavigate } from 'react-router';
 
 const LandingAuth = () => {
     const [smsSent, setSmsSent] = useState(false);
     const [isAbleToResend, setIsAbleToResend] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isSubmitLoading, setIsSubmitLoading] = useState(false)
     const [countdown, setCountdown] = useState(30);
     const [otp, setOtp] = useState('');
     const [phoneNumber, setPhoneNumber] = useState("");
     const [numberWithStar, setNumberWithStar] = useState("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         let timer;
@@ -29,7 +33,7 @@ const LandingAuth = () => {
 
         setIsLoading(true);
         try {
-            // Add your API call here
+            //TODO: Add API call here
             setSmsSent(true);
             setCountdown(30);
             setIsAbleToResend(false);
@@ -49,7 +53,18 @@ const LandingAuth = () => {
     };
 
     const handleSubmitOTP = async () => {
-
+        setIsSubmitLoading(true);
+        try {
+            let res =await new Promise((resolve) => setTimeout(() => resolve(otp), 2000)); // Simulate a delay
+            console.log(res); //TODO: Remove this line and add API call here
+            navigate("/user/chats");
+        }
+        catch (error) {
+            console.error('Failed to submit OTP:', error);
+        }
+        finally {
+            setIsSubmitLoading(false);
+        }
     }
 
     const handleResetPhoneNumber = () => {
@@ -90,7 +105,9 @@ const LandingAuth = () => {
                                     Resend Code {!isAbleToResend && countdown > 0 ? `(${countdown}s)` : ''}
                                 </button>
                             </div>
-                            <button onClick={handleSubmitOTP} className='px-5 py-3 bg-[#3B82F6] text-white rounded-lg cursor-pointer'>Submit</button>
+                            <button onClick={handleSubmitOTP} className='px-5 py-3 bg-[#3B82F6] text-white rounded-lg cursor-pointer min-w-40'>{
+                                isSubmitLoading ? <i className="ri-loader-4-line animate-spin inline-block text-2xl -my-2"></i> : "Submit OTP"
+                            }</button>
                             <p className="mt-8 text-[#3b82f6] cursor-pointer w-fit" onClick={handleResetPhoneNumber}><i className="ri-arrow-left-line"></i> Back</p>
                         </div>
                     </> :
