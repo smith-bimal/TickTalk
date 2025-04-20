@@ -1,4 +1,4 @@
-import { EllipsisVertical, File, Image, Info, Link2, Paperclip, Search, Send, Users, ArrowDown, Settings } from "lucide-react"
+import { EllipsisVertical, File, Image, Info, Link2, Paperclip, Search, Send, Users, ArrowDown, Settings, ChevronsDown } from "lucide-react"
 import { useRef, useEffect, useState } from "react"
 import { demoMessages } from "../helper/demoMessages.js";
 
@@ -35,7 +35,7 @@ const ChatPage = () => {
     return (
         <div className="flex bg-[#F5F7FA] w-screen h-screen overflow-hidden">
             {/* Chat List */}
-            <section className="flex flex-col w-[450px] border-r border-[#E5E7EB] bg-white">
+            <section className="flex flex-col w-[400px] border-r border-[#E5E7EB] bg-white">
                 <div className="flex flex-col px-4 py-4 gap-4 border-b border-gray-200">
                     <div className="flex justify-center">
                         <img alt="logo text" className="h-8 object-contain" src="../logo-without-img.png" />
@@ -44,27 +44,25 @@ const ChatPage = () => {
                         <input className="w-full rounded-md border border-gray-200 bg-[#F5F7FA] text-gray-500 text-sm placeholder-gray-400 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#0a8ddf]" placeholder="Search" type="search" />
                     </div>
                 </div>
-                <div className="flex flex-col flex-1 overflow-y-auto chat-list px-0 pt-2 pb-2 space-y-1 text-sm text-gray-600">
-                    <div className="flex items-center justify-between uppercase text-xs font-semibold tracking-widest text-gray-400 px-4 mb-1 select-none">
+                <div className="flex flex-col flex-1 overflow-y-auto chat-list px-0 pb-2 text-sm text-gray-600">
+                    <div className="text-xs font-semibold bg-gray-100 text-gray-500 px-4 py-1 mb-2 select-none">
                         <span>ALL CHATS</span>
-                        <span className="text-xs bg-gray-100 text-gray-500 rounded-full px-2 py-0.5">
-                            39
-                        </span>
+                        <span className=" text-xs bg-gray-100 text-gray-400 rounded-full px-2 py-0.5">39</span>
                     </div>
 
                     {/* Chat Items */}
-                    <div className="flex items-start gap-3 hover:bg-[#F3F6FA] rounded-lg px-4 py-3 transition-colors cursor-pointer">
+                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
                         <img alt="Foggy Nelson profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/59b2c73e-700b-49ae-0cce-4ea408c1d035.jpg" />
                         <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                                <span className="text-[10px] font-semibold bg-[#FFF6D6] text-[#B88900] rounded-full px-2 py-[1px] select-none">
+                            <div className="flex items-center gap-2 mb-1">
+                                <span className="text-[10px] font-semibold bg-[#FFF6D6] text-[#d6a922] rounded-full px-2 py-[1px] select-none">
                                     Priority
                                 </span>
                                 <span className="text-xs text-gray-400 ml-auto select-none">
                                     11:41 am
                                 </span>
                             </div>
-                            <p className="font-semibold text-gray-800 leading-tight">
+                            <p className="font-semibold text-gray-800 leading-tight mb-2">
                                 Foggy Nelson
                             </p>
                             <p className="truncate text-xs text-gray-400 leading-tight">
@@ -78,21 +76,21 @@ const ChatPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-[#E8F0FE] rounded-lg px-4 py-3 transition-colors cursor-pointer">
+                    <div className="flex items-center gap-3 bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
                         <img alt="Project Domino profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/18fc36be-35d7-4aa5-a6f2-b6aa61eac14c.jpg" />
                         <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-1 flex-wrap">
-                                <span className="text-[10px] font-semibold bg-[#FFE2E2] text-[#D14343] rounded-full px-2 py-[1px] select-none">
+                            <div className="flex items-center gap-1 flex-wrap mb-1">
+                                <span className="text-[10px] font-semibold bg-[#FFE2E2] text-[#ff5d5d] rounded-full px-2 py-[1px] select-none">
                                     Work
                                 </span>
-                                <span className="text-[10px] font-semibold bg-[#FFE2E2] text-[#D14343] rounded-full px-2 py-[1px] select-none">
+                                <span className="text-[10px] font-semibold bg-[#FFE2E2] text-[#ff5d5d] rounded-full px-2 py-[1px] select-none">
                                     Expired
                                 </span>
                                 <span className="text-xs text-gray-400 ml-auto select-none whitespace-nowrap">
                                     10:16 am
                                 </span>
                             </div>
-                            <p className="font-semibold text-gray-800 leading-tight">
+                            <p className="font-semibold text-gray-800 leading-tight mb-2">
                                 Project Domino
                             </p>
                             <p className="truncate text-xs text-gray-400 leading-tight">
@@ -109,18 +107,18 @@ const ChatPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-3 hover:bg-[#F3F6FA] rounded-lg px-4 py-3 transition-colors cursor-pointer">
+                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
                         <img alt="Karen Page profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/54e90027-6381-4045-cbd5-7b7a8b980107.jpg" />
                         <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                                <span className="text-[10px] font-semibold bg-[#E6E8FF] text-[#4F5BD5] rounded-full px-2 py-[1px] select-none">
+                            <div className="flex items-center gap-2 mb-1">
+                                <span className="text-[10px] font-semibold bg-[#E6E8FF] text-[#7e89ff] rounded-full px-2 py-[1px] select-none">
                                     Personal
                                 </span>
                                 <span className="text-xs text-gray-400 ml-auto select-none">
                                     06:19 pm
                                 </span>
                             </div>
-                            <p className="font-semibold text-gray-800 leading-tight">
+                            <p className="font-semibold text-gray-800 leading-tight mb-2">
                                 Karen Page
                             </p>
                             <p className="truncate text-xs text-gray-400 leading-tight">
@@ -134,21 +132,21 @@ const ChatPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-3 hover:bg-[#F3F6FA] rounded-lg px-4 py-3 transition-colors cursor-pointer">
+                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
                         <img alt="Product Team profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/f44709fc-f05f-4648-c0d7-3517dabcb81f.jpg" />
                         <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                                <span className="text-[10px] font-semibold bg-[#FFE2E2] text-[#D14343] rounded-full px-2 py-[1px] select-none">
+                            <div className="flex items-center gap-2 mb-1">
+                                <span className="text-[10px] font-semibold bg-[#FFE2E2] text-[#ff5d5d] rounded-full px-2 py-[1px] select-none">
                                     Work
                                 </span>
-                                <span className="text-[10px] font-semibold bg-[#D2F5E3] text-[#1B9A59] rounded-full px-2 py-[1px] select-none">
+                                <span className="text-[10px] font-semibold bg-[#D2F5E3] text-[#1ebb6a] rounded-full px-2 py-[1px] select-none">
                                     Important
                                 </span>
                                 <span className="text-xs text-gray-400 ml-auto select-none">
                                     10:16 am
                                 </span>
                             </div>
-                            <p className="font-semibold text-gray-800 leading-tight">
+                            <p className="font-semibold text-gray-800 leading-tight mb-2">
                                 Product Team
                             </p>
                             <p className="truncate text-xs text-gray-400 leading-tight">
@@ -173,8 +171,8 @@ const ChatPage = () => {
                     <div className="flex items-center gap-3">
                         <div className="flex -gap-2">
                             <img alt="User avatar 1" className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://storage.googleapis.com/a1aa/image/13a03874-4dba-4bfa-dda2-14bab9c46c99.jpg" />
-                            <img alt="User avatar 2" className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://storage.googleapis.com/a1aa/image/df7b1fc3-a162-4b54-a08d-e50161bf6d47.jpg" />
-                            <img alt="User avatar 3" className="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://storage.googleapis.com/a1aa/image/382e48d6-df0b-4f5d-065e-d2e4e294aa4c.jpg" />
+                            <img alt="User avatar 2" className="w-8 h-8 rounded-full border-2 border-white object-cover -ml-3" src="https://storage.googleapis.com/a1aa/image/df7b1fc3-a162-4b54-a08d-e50161bf6d47.jpg" />
+                            <img alt="User avatar 3" className="w-8 h-8 rounded-full border-2 border-white object-cover -ml-3" src="https://storage.googleapis.com/a1aa/image/382e48d6-df0b-4f5d-065e-d2e4e294aa4c.jpg" />
                         </div>
                         <button className="bg-gray-200 text-gray-600 text-xs font-semibold rounded px-3 py-1 select-none ml-2" type="button">
                             Invite
@@ -205,54 +203,68 @@ const ChatPage = () => {
                                     );
                                 }
                                 return (
-                                    <article key={idx} className="flex flex-col gap-2">
-                                        <div className="flex items-center gap-2 text-xs text-gray-600 font-semibold select-none">
-                                            <img src={msg.avatar} alt={msg.sender} className="w-7 h-7 rounded-full object-cover border border-gray-200" />
-                                            <span>{msg.sender}</span>
-                                            <span>•</span>
-                                            <span>{msg.time}</span>
-                                            {msg.edited && <span className="ml-1 text-gray-400 italic">Edited</span>}
-                                            <button aria-label="Edit message" className="ml-2 text-gray-400 hover:text-gray-600 text-xs cursor-pointer">
-                                                Edit
-                                            </button>
-                                            <i className="fas fa-check-double ml-1 text-gray-400"></i>
+                                    <article
+                                        key={idx}
+                                        className="flex flex-row gap-3 w-full"
+                                    >
+                                        {/* Avatar */}
+                                        <div className="w-9 flex-shrink-0 flex flex-col items-center">
+                                            <img
+                                                src={msg.avatar}
+                                                alt={msg.sender}
+                                                className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                                            />
                                         </div>
-                                        <div>
-                                            <p className="mt-1 leading-relaxed whitespace-pre-line">
-                                                {msg.text}
-                                            </p>
-                                            {msg.code && (
-                                                <pre className="bg-[#f6f8fa] border border-gray-200 rounded-md p-3 mt-2 text-xs font-mono overflow-x-auto">
-                                                    {msg.code.join('\n')}
-                                                </pre>
-                                            )}
-                                            {msg.images && (
-                                                <div className="flex gap-3 mt-3">
-                                                    {msg.images.map((img, i) => (
-                                                        <div key={i} className="w-[120px] h-[90px] rounded-md border border-gray-200 overflow-hidden relative text-xs text-gray-400 select-none">
-                                                            {img.price && (
-                                                                <div className="absolute top-2 left-2 bg-white rounded px-1.5 py-[2px] font-semibold text-[10px]">
-                                                                    {img.price}
+                                        {/* Message Content */}
+                                        <div className="flex-1 flex flex-col gap-2 items-start">
+                                            <div className="flex items-center gap-2 text-xs text-gray-600 font-semibold select-none">
+                                                <span>{msg.sender}</span>
+                                                <span className="text-gray-300">•</span>
+                                                <span className="text-gray-300 font-normal">{msg.time}</span>
+                                                <span className="text-gray-300">•</span>
+                                                {msg.edited && <span className="ml-1 text-gray-400 italic">Edited</span>}
+                                                <button aria-label="Edit message" className="ml-2 text-gray-400 hover:text-gray-600 text-xs cursor-pointer">
+                                                    Edit
+                                                </button>
+                                                <i className="fas fa-check-double ml-1 text-gray-400"></i>
+                                            </div>
+                                            <div>
+                                                <p className="mt-1 leading-relaxed whitespace-pre-line">
+                                                    {msg.text}
+                                                </p>
+                                                {msg.code && (
+                                                    <pre className="bg-[#f6f8fa] border border-gray-200 rounded-md p-3 mt-2 text-xs font-mono overflow-x-auto">
+                                                        {msg.code.join('\n')}
+                                                    </pre>
+                                                )}
+                                                {msg.images && (
+                                                    <div className="flex gap-3 mt-3">
+                                                        {msg.images.map((img, i) => (
+                                                            <div key={i} className="w-[120px] h-[90px] rounded-md border border-gray-200 overflow-hidden relative text-xs text-gray-400 select-none">
+                                                                {img.price && (
+                                                                    <div className="absolute top-2 left-2 bg-white rounded px-1.5 py-[2px] font-semibold text-[10px]">
+                                                                        {img.price}
+                                                                    </div>
+                                                                )}
+                                                                <img alt={img.label} className="w-full h-full object-cover" src={img.url} />
+                                                                <div className="absolute bottom-2 left-2 bg-white rounded px-1.5 py-[2px] font-semibold text-[10px] text-gray-400">
+                                                                    {img.label}
                                                                 </div>
-                                                            )}
-                                                            <img alt={img.label} className="w-full h-full object-cover" src={img.url} />
-                                                            <div className="absolute bottom-2 left-2 bg-white rounded px-1.5 py-[2px] font-semibold text-[10px] text-gray-400">
-                                                                {img.label}
                                                             </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            )}
-                                            {msg.file && (
-                                                <div className="flex items-center gap-2 mt-3 border border-gray-200 rounded-md px-3 py-2 bg-[#f9f9f9] w-fit">
-                                                    <File className="w-5 h-5 text-[#3f6fef]" />
-                                                    <div>
-                                                        <div className="font-semibold text-xs text-gray-700">{msg.file.name}</div>
-                                                        <div className="text-[10px] text-gray-400">{msg.file.size}</div>
+                                                        ))}
                                                     </div>
-                                                    <button className="ml-2 text-[#0a8ddf] text-xs font-semibold">Click to download</button>
-                                                </div>
-                                            )}
+                                                )}
+                                                {msg.file && (
+                                                    <div className="flex items-center gap-2 mt-3 border border-gray-200 rounded-md px-3 py-2 bg-[#f9f9f9] w-fit">
+                                                        <File className="w-5 h-5 text-[#3f6fef]" />
+                                                        <div>
+                                                            <div className="font-semibold text-xs text-gray-700">{msg.file.name}</div>
+                                                            <div className="text-[10px] text-gray-400">{msg.file.size}</div>
+                                                        </div>
+                                                        <button className="ml-2 text-[#0a8ddf] text-xs font-semibold">Click to download</button>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     </article>
                                 );
@@ -266,7 +278,7 @@ const ChatPage = () => {
                                 onClick={scrollToBottom}
                                 aria-label="Go to bottom"
                             >
-                                <ArrowDown className="w-5 h-5 text-[#3f6fef]" />
+                                <ChevronsDown className="w-5 h-5 text-[#3f6fef]" />
                             </button>
                         )}
 
