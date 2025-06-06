@@ -35,13 +35,14 @@ const ChatPage = () => {
     return (
         <div className="flex bg-[#F5F7FA] w-screen h-screen overflow-hidden">
             {/* Chat List */}
-            <section className="flex flex-col w-[400px] border-r border-[#E5E7EB] bg-white">
+            <section className="flex flex-col w-[400px] border-r border-gray-200 bg-white relative z-10 shadow-md">
                 <div className="flex flex-col px-4 py-4 gap-4 border-b border-gray-200">
                     <div className="flex justify-center">
                         <img alt="logo text" className="h-8 object-contain" src="../logo-without-img.png" />
                     </div>
-                    <div>
-                        <input className="w-full rounded-md border border-gray-200 bg-[#F5F7FA] text-gray-500 text-sm placeholder-gray-400 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#0a8ddf]" placeholder="Search" type="search" />
+                    <div className="relative">
+                        <input className="w-full rounded-md border border-gray-200 bg-[#F5F7FA] text-gray-500 text-sm placeholder-gray-400 px-3 py-2 ps-11 focus:outline-none focus:ring-1 focus:ring-[#0a8ddf]" placeholder="Search" type="search" />
+                        <Search className="absolute left-3 w-6 text-gray-400 top-1/2 -translate-y-1/2"/>
                     </div>
                 </div>
                 <div className="flex flex-col flex-1 overflow-y-auto chat-list px-0 pb-2 text-sm text-gray-600">
@@ -51,7 +52,7 @@ const ChatPage = () => {
                     </div>
 
                     {/* Chat Items */}
-                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
+                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-200">
                         <img alt="Foggy Nelson profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/59b2c73e-700b-49ae-0cce-4ea408c1d035.jpg" />
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1">
@@ -76,7 +77,7 @@ const ChatPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3 bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
+                    <div className="flex items-center gap-3 bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-200">
                         <img alt="Project Domino profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/18fc36be-35d7-4aa5-a6f2-b6aa61eac14c.jpg" />
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-1 flex-wrap mb-1">
@@ -107,7 +108,7 @@ const ChatPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
+                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-200">
                         <img alt="Karen Page profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/54e90027-6381-4045-cbd5-7b7a8b980107.jpg" />
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1">
@@ -132,7 +133,7 @@ const ChatPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-100">
+                    <div className="flex items-center gap-3 hover:bg-[#F3F6FA] p-4 transition-colors cursor-pointer border-b border-gray-200">
                         <img alt="Product Team profile picture" className="w-10 h-10 rounded-full object-cover" src="https://storage.googleapis.com/a1aa/image/f44709fc-f05f-4648-c0d7-3517dabcb81f.jpg" />
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1">

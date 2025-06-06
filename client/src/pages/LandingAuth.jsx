@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import BlackButton from "../components/BlackButton";
-import PhoneNumberInputGroup from "../components/PhoneNumberInputGroup";
 import OTPBox from "../components/OTPBox";
 import { useNavigate } from 'react-router';
+import MailIdInputGroup from "../components/MailIdInputGroup";
+import { crypticMailConvertor } from "../helper/crypticMailConvertor";
 
 const LandingAuth = () => {
     const [smsSent, setSmsSent] = useState(false);
+    const [ipVal, setIpVal] = useState({val:"", isMail: false, isUsername: false});
+    const [crypticMail, setCrypticMail] = useState("");
     const [isAbleToResend, setIsAbleToResend] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitLoading, setIsSubmitLoading] = useState(false)
     const [countdown, setCountdown] = useState(30);
     const [otp, setOtp] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [numberWithStar, setNumberWithStar] = useState("");
 
     const navigate = useNavigate();
 
@@ -28,11 +29,12 @@ const LandingAuth = () => {
         return () => clearInterval(timer);
     }, [smsSent, countdown]);
 
-    const handleSMSSend = async () => {
-        if (!phoneNumber || isLoading) return;
+    const handleMailSend = async () => {
+        if (isLoading) return;
 
         setIsLoading(true);
         try {
+            setCrypticMail(crypticMailConvertor(ipVal.val));
             //TODO: Add API call here
             setSmsSent(true);
             setCountdown(30);
@@ -48,7 +50,7 @@ const LandingAuth = () => {
         if (isAbleToResend) {
             setCountdown(30);
             setIsAbleToResend(false);
-            handleSMSSend();
+            handleMailSend();
         }
     };
 
@@ -69,8 +71,6 @@ const LandingAuth = () => {
 
     const handleResetPhoneNumber = () => {
         setSmsSent(false);
-        setPhoneNumber("");
-        setNumberWithStar("");
         setOtp("");
         setIsAbleToResend(false);
         setCountdown(30);
@@ -90,11 +90,15 @@ const LandingAuth = () => {
 
                     {smsSent ? <>
                         <div className="space-y-4">
-                            <img src="logo-without-text.png" alt="" className="max-h-16" />
+                            <img src="logo-without-text.png" alt="" className="max-h-16 -mb-1" />
                             <h1 className="text-5xl font-semibold leading-[4rem]">Verification Code</h1>
-                            <p className="max-w-xl text-[#6B7280]">We have sent code to your phone number: <br /> <span>{numberWithStar}</span></p>
+                            <p className="max-w-xl text-[#6B7280]">
+                                Verification code sent to: <br /><span>{crypticMail}</span>
+                            </p>
 
-                            <p className="text-[#6B7280]">Please enter the code below to verify your phone number.</p>
+                            <p className="text-[#6B7280]">
+                                Enter the code below to unlock your TickTalk experience.
+                            </p>
 
                             <div className="flex items-center gap-6">
                                 <OTPBox setOtp={setOtp} otp={otp} />
@@ -114,14 +118,17 @@ const LandingAuth = () => {
                         <>
                             <div className="space-y-4">
                                 <img src="logo-without-text.png" alt="" className="max-h-16" />
-                                <h1 className="text-5xl font-semibold leading-[4rem]">Fast. Friendly. <br /> Real-time Messaging.</h1>
-                                <p className="max-w-xl text-[#6B7280]">With TickTalk, stay instantly connected through secure, lightning-fast messages using just your phone number.
-                                    No emails. No passwords. Just talk.</p>
+                                <h1 className="text-5xl font-semibold leading-[3rem]">
+                                    Effortless. Secure. <br /> Connected.
+                                </h1>
+                                <p className="max-w-xl text-[#6B7280]">
+                                    TickTalk brings you instant, private messaging—sync, share, and chat anywhere. Simple sign in. Powerful conversations.
+                                </p>
 
-                                <PhoneNumberInputGroup phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} setNumberWithStar={setNumberWithStar} handleSMSSend={handleSMSSend} />
+                                <MailIdInputGroup handleMailSend={handleMailSend} setIpVal={setIpVal} ipVal={ipVal} />
                             </div>
 
-                            <div className="flex mt-20 gap-12 -mb-20">
+                            <div className="flex mt-10 gap-6 -mb-20">
                                 <BlackButton icon="ri-apple-fill" body="App Store" />
                                 <BlackButton icon="ri-google-play-fill" body="Google Play" />
                                 <BlackButton icon="ri-mac-line" body="Mac or Windows" />
